@@ -1,0 +1,9 @@
+<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>
+
+<% if user_signed_in? %>
+	<%= current_user.email %>
+<% else %>
+	<%= render 'hero' %>
+<% end %>
