@@ -1,0 +1,16 @@
+<div>
+  <h1 class="font-bold text-4xl">WeighIns#new</h1>
+  <p>Find me in app/views/weigh_ins/new.html.erb</p>
+</div>
+
+<%= form_with model: @weigh_in do |form| %>
+  <div>
+    <%= form.label :measured_at %>
+    <%= form.text_field :measured_at %>
+  </div>
+  <div>
+    <%= form.label :weight_g %>
+    <%= form.text_field :weight_g %>
+  </div>
+  <%= form.submit %>
+<% end %>
