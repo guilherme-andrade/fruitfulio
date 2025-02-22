@@ -1,0 +1,25 @@
+<div class="w-[400px]">
+	<%= polaris_stack(gap: "5", vertical: true, width: :lg) do |stack| %>
+		<% stack.with_item do %>
+			<% polaris_text(variant: :heading3xl, as: :h1, font_weight: :bold, alignment: :center) do %>
+				Reset Password
+			<% end %>
+		<% end %>
+
+		<br>
+
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, builder: Polaris::FormBuilder) do |f| %>
+
+			<%= f.polaris_text_field(:email, type: :email, placeholder: "Email") %><br />
+			
+			<%= polaris_button(submit: true, full_width: true, size: :large, primary: true) { "Send password reset instructions" }%>
+
+			<%= polaris_spacer(vertical: :base)%>
+
+			<%= polaris_button_group(full_width: true) do |g|%>
+				<%= g.with_button(plain: true, monochrome: true, url: "/users/sign_in") { "Login" } %>
+				<%= g.with_button(plain: true, monochrome: true, url: "/users/sign_up") { "Sign up" } %>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
