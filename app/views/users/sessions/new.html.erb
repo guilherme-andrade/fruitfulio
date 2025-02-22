@@ -1,0 +1,32 @@
+<div class="w-[400px]">
+	<%= polaris_stack(gap: "5", vertical: true, width: :lg) do |stack| %>
+		<% stack.with_item do %>
+			<% polaris_text(variant: :heading3xl, as: :h1, font_weight: :bold, alignment: :center) do %>
+				Login
+			<% end %>
+		<% end %>
+
+		<%= polaris_spacer(vertical: :base) %>
+
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name), builder: Polaris::FormBuilder) do |f| %>
+			<%= render "users/shared/error_messages", resource: resource %>
+
+			<%= f.polaris_text_field(:email, type: :email,  placeholder: "Email")%><br />
+
+			<%= f.polaris_text_field(:password, type: :password, placeholder: "Password", label_action: { 
+					url: "/users/password/new", content: "Forgot your password?"
+				}) 
+			%>
+
+			<% if devise_mapping.rememberable? %>
+				<%= f.polaris_check_box(:remember_me,
+					label: "Remember me",
+				) %> <br/>
+			<% end %>
+			
+			<%= polaris_button(submit: true, full_width: true, size: :large, primary: true) { "Login" } %> <br/>
+
+			<%= polaris_button(url: "/users/sign_up", submit: false, plain: true, monochrome: true) { "Sign Up" } %>
+		<% end %>
+	<% end %>
+</div>

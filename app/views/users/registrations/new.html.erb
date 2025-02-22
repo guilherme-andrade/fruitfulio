@@ -1,0 +1,36 @@
+<div style="width: 400px;">
+	<%= polaris_stack(gap: "5", vertical: true) do |stack| %>
+
+	<% stack.with_item do %>
+		<% polaris_text(variant: :heading3xl, as: :h1, font_weight: :bold, alignment: :center) do %>
+			<%= t("users.registrations.new.sign_up") %>
+		<% end %>
+	<% end %>
+
+	<%= polaris_spacer(vertical: :base) %>
+
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), builder: Polaris::FormBuilder) do |f| %>
+
+		<%= f.polaris_text_field(:email, type: :email, placeholder: t("users.registrations.new.email_placeholder")) %><br/>
+
+		<%= f.polaris_text_field(
+			:password, 
+			type: :password, 
+			placeholder: t("users.registrations.new.password_placeholder"),
+			auto_complete: "new_password"
+		) 
+		%>
+		<% if @minimum_password_length %>
+			<em><%= @minimum_password_length %> <%= t("users.registrations.new.password_minimum") %></em>
+		<% end %>
+
+		<%= polaris_spacer(vertical: :base) %>
+		
+		<%= f.polaris_text_field(:password_confirmation, type: :password, placeholder: t("users.registrations.new.password_confirmation_placeholder"), auto_complete: "new_password") %><br>
+
+		<%= polaris_button(submit: true, full_width: true, size: :large, primary: true) { t("users.registrations.new.sign_up") } %><br>
+
+		<%= polaris_button(url: "/users/sign_in", submit: false, plain: true, monochrome: true) { t("users.registrations.new.login") } %>
+	<% end %>
+<% end %>
+</div>
