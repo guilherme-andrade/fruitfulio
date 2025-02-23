@@ -1,0 +1,40 @@
+.calendar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+  width: fit-content;
+}
+
+.calendar-day {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  font-size: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  background-color: #f0f0f0;
+
+  &.past {
+    background-color: #d7d7d7
+  }
+
+  .today {
+    background-color: #f0f0f0;
+  }
+}
+
+.calendar-day:hover {
+  background-color: #f0f0f0;
+}
+.day-label {
+  font-weight: bold;
+}

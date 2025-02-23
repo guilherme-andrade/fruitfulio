@@ -20,6 +20,8 @@ Bundler.require(*Rails.groups)
 
 module Fruitful
   class Application < Rails::Application
+    config.view_component.preview_paths << Rails.root.join("app", "components")
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 

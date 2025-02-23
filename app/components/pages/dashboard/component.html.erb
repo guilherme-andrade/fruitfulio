@@ -1,0 +1,43 @@
+<%= polaris_frame(
+  logo: {
+    url: "/",
+    src: "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg",
+    width: "124px"
+  }
+) do |frame| %>
+  <% frame.with_top_bar do |top_bar| %>
+    <% top_bar.with_search_field do |search_field| %>
+      <%= polaris_text_field(placeholder: t('dashboard.search_placeholder', default: "Search habits..."), clear_button: true) %>
+    <% end %>
+    <% top_bar.with_user_menu(name: "User", detail: t('dashboard.title')) do |user_menu| %>
+      <% user_menu.with_avatar(initials: "U") %>
+
+      <%= polaris_action_list do |action_list| %>
+        <% action_list.with_item(icon: "ExitIcon", url: "/") { "Log out" } %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% frame.with_navigation do |navigation| %>
+    <% navigation.with_section do |section| %>
+      <% section.with_item(url: "#", label: t('dashboard.back_to_home', default: "Back to Home"), icon: "ArrowLeftIcon") %>
+    <% end %>
+    <% navigation.with_section(title: "Weight Loss App", separator: true) do |section| %>
+      <% section.with_action(icon: "ChatIcon") %>
+      <% section.with_item(url: "#", label: t('dashboard.dashboard', default: "Dashboard"), icon: "HomeIcon") %>
+      <% section.with_item(url: "#", label: t('dashboard.my_progress', default: "My Progress"), icon: "ChartDonutIcon") %>
+      <% section.with_item(url: "#", label: t('dashboard.meal_plans', default: "Meal Plans"), icon: "FoodIcon") %>
+    <% end %>
+  <% end %>
+
+  <%= polaris_page(title: t('dashboard.title')) do %>
+    <%= render Calendar::Component.new %>
+  <% end %>
+<% end %>
+
+<script>
+  function trackHabits(date) {
+    // Logic to track habits for the selected date
+    alert("Track habits for: " + date);
+    // You can redirect to a habit tracking page or open a modal here
+  }
+</script>

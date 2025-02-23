@@ -1,0 +1,8 @@
+<div class="<%= class_names('calendar') %>">
+  <% each_viewable_day do |day| %>
+    <div class="<%= class_names('calendar-day', 'past' => day.past?) %>">
+      <div class="<%= class_names('day-label') %>"><%= day.strftime('%a') %></div>
+      <div class="<%= class_names('day-date') %>"><%= day.day %></div>
+    </div>
+  <% end %>
+</div>
