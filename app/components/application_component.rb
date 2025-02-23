@@ -4,7 +4,7 @@ class ApplicationComponent < ViewComponentContrib::Base
   extend Dry::Initializer
 
   def identifier
-    @identifier ||= self.class.name.sub('::Component', '').underscore.sub('_', '-').split('/').join('--')
+    @identifier ||= self.class.name.sub("::Component", "").underscore.sub("_", "-").split("/").join("--")
   end
 
   def class_names(*args)
