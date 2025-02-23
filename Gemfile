@@ -65,3 +65,11 @@ gem "tailwindcss-ruby", "~> 4.0"
 gem "tailwindcss-rails", "~> 4.1"
 
 gem "polaris_view_components", "~> 2.2"
+gem "view_component-contrib"
+gem "faraday"
+
+gem "view_component", "~> 3.21"
+
+gem "dry-initializer", "~> 3.2"
+
+gem "cssbundling-rails", "~> 1.4"

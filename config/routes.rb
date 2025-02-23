@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :weigh_ins
-  get "/", to: "static_pages#home", as: :root
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +12,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  authenticated :user do
+    root to: "dashboards#show"
+  end
+
+  get "/", to: "static_pages#home"
 end
