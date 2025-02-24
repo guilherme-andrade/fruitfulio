@@ -71,5 +71,6 @@ gem "faraday"
 gem "view_component", "~> 3.21"
 
 gem "dry-initializer", "~> 3.2"
-
+gem "groupdate"
+gem "apexcharts"
 gem "cssbundling-rails", "~> 1.4"
