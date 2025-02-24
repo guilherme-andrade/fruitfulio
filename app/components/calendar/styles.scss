@@ -1,7 +1,6 @@
 .calendar {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
   gap: 10px;
   width: fit-content;
 }
@@ -12,23 +11,25 @@
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  border-radius: var(--p-border-radius-300);
+  height: 40px;
+  width: 40px;
   display: flex;
   font-size: 12px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   line-height: 1;
-  background-color: #f0f0f0;
+  background-color: var(--p-color-bg-surface);
+  box-shadow: var(--p-shadow-xs);
 
   &.past {
-    background-color: #d7d7d7
+    background-color: var(--p-color-bg-fill-tertiary);
   }
 
-  .today {
-    background-color: #f0f0f0;
+  &.today {
+    border-width: 2px;
+    border-color: var(--pc-box-color);
   }
 }
 

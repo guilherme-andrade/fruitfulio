@@ -6,7 +6,6 @@ module.exports = {
     require('autoprefixer'),
     require("postcss-modules")({
       generateScopedName: (name, filename, _css) => {
-        console.log(filename);
         const matches = filename.match(/\/app\/components\/?(.*)\/styles.scss$/);
         // Do not transform CSS files from outside of the components folder
         if (!matches) return name;
