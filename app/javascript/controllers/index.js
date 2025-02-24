@@ -1,5 +1,6 @@
-import { eagerLoadControllersFrom } from "controllers/custom_loading"
-eagerLoadControllersFrom({
-  controllers: (name) => new RegExp(`^${name}/.*_controller$`), // controllers/**/*_controller
-  components: (name) => new RegExp(`^components/.*$`), // components/**
-}, application)
+import { application } from "controllers/application"
+
+import DashboardController from "./components/pages/dashboard/controller"
+
+application.register("pages--dashboard", DashboardController)
+

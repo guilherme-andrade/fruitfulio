@@ -72,6 +72,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    apexcharts (0.2.0)
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -122,6 +123,8 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.5.1)
+      activesupport (>= 7)
     highline (3.1.2)
       reline
     i18n (1.14.7)
@@ -412,6 +415,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  apexcharts
   bootsnap
   brakeman
   cssbundling-rails (~> 1.4)
@@ -420,6 +424,7 @@ DEPENDENCIES
   dotenv-rails
   dry-initializer (~> 3.2)
   faraday
+  groupdate
   i18n-tasks (~> 1.0.14)
   importmap-rails
   jbuilder

@@ -1,43 +1,116 @@
-<%= polaris_frame(
-  logo: {
-    url: "/",
-    src: "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg",
-    width: "124px"
-  }
-) do |frame| %>
-  <% frame.with_top_bar do |top_bar| %>
-    <% top_bar.with_search_field do |search_field| %>
-      <%= polaris_text_field(placeholder: t('dashboard.search_placeholder', default: "Search habits..."), clear_button: true) %>
-    <% end %>
-    <% top_bar.with_user_menu(name: "User", detail: t('dashboard.title')) do |user_menu| %>
-      <% user_menu.with_avatar(initials: "U") %>
+<%= controller do %>
+  <%= polaris_frame(
+    logo: {
+      url: "/",
+      src: "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg",
+      width: "124px"
+    }
+  ) do |frame| %>
+    <% frame.with_top_bar do |top_bar| %>
+      <% top_bar.with_search_field do |search_field| %>
+        <%= polaris_text_field(placeholder: t('dashboard.search_placeholder', default: "Search habits..."), clear_button: true) %>
+      <% end %>
+      <% top_bar.with_user_menu(name: "User", detail: t('dashboard.title')) do |user_menu| %>
+        <% user_menu.with_avatar(initials: "U") %>
 
-      <%= polaris_action_list do |action_list| %>
-        <% action_list.with_item(icon: "ExitIcon", url: "/") { "Log out" } %>
+        <%= polaris_action_list do |action_list| %>
+          <% action_list.with_item(icon: "ExitIcon", url: "/") { "Log out" } %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <% frame.with_navigation do |navigation| %>
-    <% navigation.with_section do |section| %>
-      <% section.with_item(url: "#", label: t('dashboard.back_to_home', default: "Back to Home"), icon: "ArrowLeftIcon") %>
+    <% frame.with_navigation do |navigation| %>
+      <% navigation.with_section do |section| %>
+        <% section.with_item(url: "#", label: t('dashboard.back_to_home', default: "Back to Home"), icon: "ArrowLeftIcon") %>
+      <% end %>
+      <% navigation.with_section(title: "Weight Loss App", separator: true) do |section| %>
+        <% section.with_action(icon: "ChatIcon") %>
+        <% section.with_item(url: "#", label: t('dashboard.dashboard', default: "Dashboard"), icon: "HomeIcon") %>
+        <% section.with_item(url: "#", label: t('dashboard.my_progress', default: "My Progress"), icon: "ChartDonutIcon") %>
+        <% section.with_item(url: "#", label: t('dashboard.meal_plans', default: "Meal Plans"), icon: "FoodIcon") %>
+      <% end %>
     <% end %>
-    <% navigation.with_section(title: "Weight Loss App", separator: true) do |section| %>
-      <% section.with_action(icon: "ChatIcon") %>
-      <% section.with_item(url: "#", label: t('dashboard.dashboard', default: "Dashboard"), icon: "HomeIcon") %>
-      <% section.with_item(url: "#", label: t('dashboard.my_progress', default: "My Progress"), icon: "ChartDonutIcon") %>
-      <% section.with_item(url: "#", label: t('dashboard.meal_plans', default: "Meal Plans"), icon: "FoodIcon") %>
+
+    <%= polaris_page(title: nil) do |page| %>
+      <%= render(Calendar::Component.new) %>
+    <% end %>
+    <%= polaris_divider(border_color: "border") %>
+    <%= polaris_page(
+      title: current_day.strftime("%A, %B %d, %Y"),
+      subtitle: t("dashboard.mood", default: "Mood: %{mood}", mood: "Happy 😁"),
+      compact_title: true,
+      previous_url: "/product/2",
+      next_url: "/product/2",
+      secondary_actions: [
+        { content: "Duplicate", url: "/duplicate" },
+      ]
+    ) do |page| %>
+      <% page.with_title_metadata do %>
+        <%= polaris_badge(status: :success, progress: :complete) { t("dashboard.status.complete") } %>
+      <% end %>
+      <% page.with_primary_action(disabled: true) { "Save" } %>
+      <% page.with_action_group(
+        title: "Promote",
+        actions: [
+          { content: "Share on Facebook", url: "https://facebook.com" },
+          { content: "Share on Twitter", url: "https://twitter.com" },
+        ]
+      ) %>
+
+      <div class="columns-3 gap-4 mb-1">
+        <%= polaris_card(title: t("dashboard.todays_weight", default: "Today's Weight"), actions: [{ content: t("dashboard.set_weight", default: "Weigh In"), url: "#" }]) do %>
+          <div>
+            <%= polaris_display_text(size: :extra_large) { t("weight_kgs", weight: 70, default: "%{weight} kg") } %>
+          </div>
+          <div>
+            <%= polaris_text_subdued { t("x_kgs_change_from_last_week", weight: -0.5, default: "%{weight} kg change from last week") } %>
+          </div>
+        <% end %>   
+        <%= polaris_card(title: t("dashboard.todays_calories", default: "Today's Calories"), actions: [{ content: t("dashboard.log_meal", default: "Log Meal"), url: "#" }]) do %>
+          <div>
+            <%= polaris_display_text(size: :extra_large) { t("calories", calories: number_to_human(2200, units: { thousand: 'K', million: 'M' }, precision: 2), default: "%{calories} cal") } %>
+          </div>
+          <div>
+            <%= polaris_text_subdued { t("x_calories_away_from_goal", calories: number_to_human(1000, units: { thousand: 'K', million: 'M' }, precision: 2), default: "%{calories} cal away from goal") } %>
+          </div>
+        <% end %>   
+        <%= polaris_card(title: t("dashboard.todays_exercise", default: "Today's Exercise"), actions: [{ content: t("dashboard.log_exercise", default: "Log Exercise"), url: "#" }]) do %>
+          <div>
+            <%= polaris_display_text(size: :extra_large) { t("steps", steps: number_to_human(3000, units: { thousand: 'K', million: 'M' }, precision: 2), default: "%{steps} steps") } %>
+          </div>
+          <div>
+            <%= polaris_text_subdued { t("x_steps_away_from_goal", steps: number_to_human(10000, units: { thousand: 'K', million: 'M' }, precision: 2), default: "%{steps} steps away from goal") } %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mb-4">
+        <div class="col-span-2 col-start-1">
+          <%= polaris_card(title: t("dashboard.calories_consumed", default: "Calories Consumed")) do %>
+            <%= column_chart User.group_by_day(:created_at).count, tooltip: true, data_labels: { enabled: true } %>
+          <% end %>       
+        </div>
+        <%= polaris_card(title: t("dashboard.food_recommendations", default: "Food Recommendations"), subdued: true) do %>
+          <div class="h-full">
+            <%= polaris_list do |list| %>
+              <% list.with_item { "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos." } %>
+              <% list.with_item { "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos." } %>
+              <% list.with_item { "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos." } %>
+            <% end %>
+          </div>
+        <% end %>    
+      </div>
+
+      <%= polaris_card(title: t("dashboard.weight_loss_progress", default: "Weight Loss Progress")) do %>
+        <%= line_chart User.group_by_day(:created_at).count, tooltip: true, data_labels: { enabled: true } %>
+      <% end %>       
     <% end %>
   <% end %>
 
-  <%= polaris_page(title: t('dashboard.title')) do %>
-    <%= render Calendar::Component.new %>
-  <% end %>
+  <script>
+    function trackHabits(date) {
+      // Logic to track habits for the selected date
+      alert("Track habits for: " + date);
+      // You can redirect to a habit tracking page or open a modal here
+    }
+  </script>
 <% end %>
-
-<script>
-  function trackHabits(date) {
-    // Logic to track habits for the selected date
-    alert("Track habits for: " + date);
-    // You can redirect to a habit tracking page or open a modal here
-  }
-</script>
