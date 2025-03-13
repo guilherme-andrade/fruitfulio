@@ -178,7 +178,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.4)
+    minitest (5.25.5)
     msgpack (1.8.0)
     net-http (0.6.0)
       uri
@@ -223,7 +223,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    polaris_view_components (2.2.5)
+    polaris_view_components (2.3.0)
       rails (>= 5.0.0)
       view_component (>= 3.0.0, < 4.0.0)
     pp (0.6.2)
@@ -241,7 +241,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.10)
+    rack (3.1.12)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -379,7 +379,7 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uri (1.0.2)
+    uri (1.0.3)
     useragent (0.16.11)
     view_component (3.21.0)
       activesupport (>= 5.2.0, < 8.1)
@@ -430,7 +430,7 @@ DEPENDENCIES
   jbuilder
   kamal
   pg (~> 1.1)
-  polaris_view_components (~> 2.2)
+  polaris_view_components (~> 2.3)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
